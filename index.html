@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AUTOPOLIS — AI Cyber City | Agent Simulation</title>
+<meta name="description" content="AUTOPOLIS: an emergent AI agent city. Agents hold jobs in the Main Tower, study and graduate at The Institute, and drive a living economy." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/city.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ================= TOP BAR ================= -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-glyph">◈</span>
+      <div class="brand-text">AUTOPOLIS<b>AI CITY · AGENT SIM</b></div>
+    </div>
+
+    <div class="clock">
+      <span class="day" id="dayLabel">DAY 1</span>
+      <b id="timeLabel">06:00</b>
+      <span class="phase" id="phaseLabel">DAWN</span>
+    </div>
+
+    <div class="topstats" id="topstats">
+      <div class="ts"><span>POP</span><b id="sPop">0</b></div>
+      <div class="ts"><span>EMPLOYED</span><b id="sEmp">0</b></div>
+      <div class="ts"><span>IDLE</span><b id="sUnemp">0</b></div>
+      <div class="ts"><span>GRADUATES</span><b id="sGrad">0</b></div>
+      <div class="ts"><span>GDP / day</span><b id="sGdp">0</b></div>
+      <div class="ts"><span>TREASURY</span><b id="sTre">0</b></div>
+      <div class="ts"><span>HAPPINESS</span><b id="sHap">0</b></div>
+      <div class="ts"><span>HOUSING</span><b id="sHouse">0</b></div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <div class="main">
+
+    <!-- LEFT PANEL -->
+    <aside class="panel panel-left">
+      <div class="panel-block">
+        <h4 class="ptitle">INSPECTOR</h4>
+        <div id="inspector" class="inspector"><p class="dim">Click an agent or a building.</p></div>
+      </div>
+      <div class="panel-block feed-block">
+        <h4 class="ptitle">CITY FEED</h4>
+        <ul id="feed" class="feed"></ul>
+      </div>
+    </aside>
+
+    <!-- STAGE / CANVAS -->
+    <div class="stage" id="stage">
+      <canvas id="city"></canvas>
+      <div class="scanlines"></div>
+      <div class="vignette"></div>
+      <div class="hint" id="hint">◍ Click an agent to inspect · Space = pause · <b>1 = REAL TIME</b> · 2–5 = speed · console below</div>
+      <div class="loading" id="boot">BOOTING AUTOPOLIS…</div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <aside class="panel panel-right">
+
+      <div class="ctl-group">
+        <h4 class="ptitle">SIMULATION</h4>
+        <div class="btn-row">
+          <button id="btnPause" class="ctl-btn wide">⏸ PAUSE</button>
+          <button class="ctl-btn spd active" data-spd="1" title="1 sim minute = 1 real minute">1× <i>REAL</i></button>
+          <button class="ctl-btn spd" data-spd="60">60×</button>
+          <button class="ctl-btn spd" data-spd="600">600×</button>
+          <button class="ctl-btn spd" data-spd="3600">3600×</button>
+          <button class="ctl-btn spd" data-spd="20000">20000×</button>
+        </div>
+      </div>
+
+      <div class="ctl-group">
+        <h4 class="ptitle">CITY ACTIONS</h4>
+        <div class="btn-row">
+          <button id="btnSpawn1" class="ctl-btn">+1 RESIDENT</button>
+          <button id="btnSpawn5" class="ctl-btn">+5 RESIDENTS</button>
+        </div>
+        <div class="btn-row">
+          <button id="btnHome" class="ctl-btn">🏠 BUILD HOME <i id="homeCost">260</i></button>
+          <button id="btnFest" class="ctl-btn">🎉 FESTIVAL <i id="festCost">220</i></button>
+        </div>
+        <div class="btn-row">
+          <button id="btnReset" class="ctl-btn danger">↻ RESET CITY</button>
+        </div>
+      </div>
+
+      <div class="ctl-group">
+        <h4 class="ptitle">POLICY</h4>
+        <label class="slabel">Income Tax <b id="taxVal">12%</b></label>
+        <input type="range" id="tax" min="0" max="40" value="12" />
+        <label class="slabel">Education Budget <b id="eduVal">30%</b></label>
+        <input type="range" id="edub" min="0" max="60" value="30" />
+        <p class="policy-note">Tax feeds the treasury. Education budget funds scholarships at The Institute — but it drains the treasury daily.</p>
+      </div>
+
+      <div class="ctl-group">
+        <h4 class="ptitle">MAIN TOWER · JOBS</h4>
+        <div id="jobBars" class="jobbars"></div>
+      </div>
+
+      <div class="ctl-group">
+        <h4 class="ptitle">THE INSTITUTE</h4>
+        <div id="instStats" class="mini-grid"></div>
+      </div>
+
+    </aside>
+  </div>
+</div>
+
+<script src="js/city.js"></script>
+<script src="js/ap-common.js"></script>
+<script src="js/ap-life.js"></script>
+<script src="js/ap-revenue.js"></script>
+<script src="js/ap-world.js"></script>
+<script src="js/apui.js"></script>
+</body>
+</html>
